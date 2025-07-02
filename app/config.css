@@ -1,0 +1,198 @@
+@theme {
+  --shadow-modal-dark: var(--auera-neutral-800) 0 -1px 0 1px inset,
+    var(--auera-neutral-900) 0 1px 2px 0;
+  --shadow-card: 0 4px 10px var(--auera-card-sh);
+
+  --color-primary: var(--auera-text-color);
+  --color-muted: var(--auera-text-muted);
+  --color-border: var(--auera-border);
+  --color-hover: var(--auera-hover);
+  --color-input: var(--auera-input);
+  --color-shadow: var(--auera-shadow);
+  --color-text: var(--auera-text);
+  --color-btn-hover: var(--auera-btn-hover);
+  --color-btn-shadow: var(--auera-btn-shadow);
+
+  --color-sidebar: var(--auera-sidebar);
+  --color-modal: var(--auera-modal);
+  --color-content: var(--auera-content);
+  --color-btn-bg: var(--auera-bg-btn);
+  --color-btn-border: var(--auera-btn-border);
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes walkIn {
+    from {
+      transform: scale(0.2);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes walkOut {
+    from {
+      transform: scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: scale(0.2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes dropIn {
+    from {
+      transform: translateY(-50%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+
+  @keyframes dropOut {
+    from {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-50%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOutLeft {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes popIn {
+    0% {
+      transform: translateY(50%);
+      opacity: 0;
+    }
+    ,
+    100% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+
+  @keyframes popOut {
+    0% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(50%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes shake {
+    0% {
+      transform: translateX(6px);
+    }
+    50% {
+      transform: translateX(-6px);
+    }
+    100% {
+      transform: translateX(6px);
+    }
+  }
+
+  @keyframes scrollX {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes wave {
+    0% {
+      transform: scaleY(1);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(1.5);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-0.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  --animate-slideIn: slideIn 0.5s ease-in-out;
+  --animate-slideOut: slideOut 0.5s ease-in-out;
+  --animate-dropIn: dropIn 0.5s ease-in-out;
+  --animate-dropOut: dropOut 0.5s ease-in-out;
+  --animate-walkIn: walkIn 0.5s ease-in-out;
+  --animate-walkOut: walkOut 0.5s ease-in-out;
+  --animate-slideInLeft: slideInLeft 0.5s ease-in-out;
+  --animate-slideOutLeft: slideOutLeft 0.5s ease-in-out;
+  --animate-popIn: popIn 0.5s ease-in-out;
+  --animate-popOut: popOut 0.5s ease-in-out;
+  --animate-shake: shake 0.2s ease-in-out;
+  --animate-scrollX: scrollX 40s linear infinite;
+  --animate-wave: wave 1.2s infinite ease-in-out;
+  --animate-fadeIn: fadeIn 0.2s ease-out;
+
+  --drop-shadow-tab: 0 1px 2px rgb(0 0 0 / 0.1), 0 1px 1px rgb(0 0 0 / 0.06);
+
+  --font-inter: "Inter", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+  --font-arhivo: "Archivo", sans-serif;
+}

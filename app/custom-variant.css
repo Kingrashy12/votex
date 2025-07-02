@@ -1,0 +1,499 @@
+@source "../node_modules/auera-ui";
+
+@source inline("{checked:,focus:}color-green-{100..900..100},950");
+
+/* Custom Variants using @slot */
+@custom-variant theme-dark {
+  &:where([data-theme="dark"] *) {
+    @slot;
+  }
+}
+
+@custom-variant theme-light {
+  &:where([data-theme="light"] *) {
+    @slot;
+  }
+}
+
+@custom-variant tone-dark {
+  &:where(&[data-theme="dark"]) {
+    @slot;
+  }
+}
+
+@custom-variant tone-light {
+  &:where(&[data-theme="light"]) {
+    @slot;
+  }
+}
+
+@custom-variant theme-obsidian {
+  &:where([data-theme-variant="obsidian"] *) {
+    @slot;
+  }
+}
+
+@custom-variant theme-corporate {
+  &:where([data-theme-variant="corporate"] *) {
+    @slot;
+  }
+}
+
+@custom-variant tone-obsidian {
+  &:where(&[data-theme-variant="obsidian"]) {
+    @slot;
+  }
+}
+
+@custom-variant tone-corporate {
+  &:where(&[data-theme-variant="corporate"]) {
+    @slot;
+  }
+}
+
+@custom-variant dark-obsidian {
+  &:where([data-theme="dark"][data-theme-variant="obsidian"] *) {
+    @slot;
+  }
+}
+
+@custom-variant light-obsidian {
+  &:where([data-theme="light"][data-theme-variant="obsidian"] *) {
+    @slot;
+  }
+}
+
+@custom-variant self-light-obsidian {
+  &:where(&[data-theme="light"][data-theme-variant="obsidian"]) {
+    @slot;
+  }
+}
+
+@custom-variant self-dark-obsidian {
+  &:where(&[data-theme="dark"][data-theme-variant="obsidian"]) {
+    @slot;
+  }
+}
+
+@custom-variant scrollbar {
+  &::-webkit-scrollbar {
+    @slot;
+  }
+}
+
+@custom-variant scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
+    @slot;
+  }
+}
+
+@custom-variant scrollbar-track {
+  &::-webkit-scrollbar-track {
+    @slot;
+  }
+}
+
+@custom-variant select-open {
+  &:where([select-open="true"] *) {
+    @slot;
+  }
+}
+
+@custom-variant svg {
+  & svg {
+    @slot;
+  }
+}
+
+@custom-variant paragraph {
+  & p {
+    @slot;
+  }
+}
+
+@custom-variant span {
+  & span {
+    @slot;
+  }
+}
+
+@custom-variant data-disabled {
+  &:where(&[data-disabled="true"]) {
+    @slot;
+  }
+}
+
+/* Custom Utilities using @utility */
+@utility scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility outer-spin-none {
+  &::-webkit-outer-spin-button {
+    appearance: none;
+  }
+}
+
+@utility inner-spin-none {
+  &::-webkit-inner-spin-button {
+    appearance: none;
+  }
+}
+
+@utility animate-dots {
+  &::after {
+    content: ".";
+    animation: dots 1.5s steps(5) infinite;
+    position: absolute;
+  }
+}
+
+/* Z-index utilities from z-70 to z-1000 */
+@utility z-70 {
+  z-index: 70;
+}
+@utility z-80 {
+  z-index: 80;
+}
+@utility z-90 {
+  z-index: 90;
+}
+@utility z-100 {
+  z-index: 100;
+}
+@utility z-110 {
+  z-index: 110;
+}
+@utility z-120 {
+  z-index: 120;
+}
+@utility z-130 {
+  z-index: 130;
+}
+@utility z-140 {
+  z-index: 140;
+}
+@utility z-150 {
+  z-index: 150;
+}
+@utility z-160 {
+  z-index: 160;
+}
+@utility z-170 {
+  z-index: 170;
+}
+@utility z-180 {
+  z-index: 180;
+}
+@utility z-190 {
+  z-index: 190;
+}
+@utility z-200 {
+  z-index: 200;
+}
+@utility z-210 {
+  z-index: 210;
+}
+@utility z-220 {
+  z-index: 220;
+}
+@utility z-230 {
+  z-index: 230;
+}
+@utility z-240 {
+  z-index: 240;
+}
+@utility z-250 {
+  z-index: 250;
+}
+@utility z-260 {
+  z-index: 260;
+}
+@utility z-270 {
+  z-index: 270;
+}
+@utility z-280 {
+  z-index: 280;
+}
+@utility z-290 {
+  z-index: 290;
+}
+@utility z-300 {
+  z-index: 300;
+}
+@utility z-310 {
+  z-index: 310;
+}
+@utility z-320 {
+  z-index: 320;
+}
+@utility z-330 {
+  z-index: 330;
+}
+@utility z-340 {
+  z-index: 340;
+}
+@utility z-350 {
+  z-index: 350;
+}
+@utility z-360 {
+  z-index: 360;
+}
+@utility z-370 {
+  z-index: 370;
+}
+@utility z-380 {
+  z-index: 380;
+}
+@utility z-390 {
+  z-index: 390;
+}
+@utility z-400 {
+  z-index: 400;
+}
+@utility z-410 {
+  z-index: 410;
+}
+@utility z-420 {
+  z-index: 420;
+}
+@utility z-430 {
+  z-index: 430;
+}
+@utility z-440 {
+  z-index: 440;
+}
+@utility z-450 {
+  z-index: 450;
+}
+@utility z-460 {
+  z-index: 460;
+}
+@utility z-470 {
+  z-index: 470;
+}
+@utility z-480 {
+  z-index: 480;
+}
+@utility z-490 {
+  z-index: 490;
+}
+@utility z-500 {
+  z-index: 500;
+}
+@utility z-510 {
+  z-index: 510;
+}
+@utility z-520 {
+  z-index: 520;
+}
+@utility z-530 {
+  z-index: 530;
+}
+@utility z-540 {
+  z-index: 540;
+}
+@utility z-550 {
+  z-index: 550;
+}
+@utility z-560 {
+  z-index: 560;
+}
+@utility z-570 {
+  z-index: 570;
+}
+@utility z-580 {
+  z-index: 580;
+}
+@utility z-590 {
+  z-index: 590;
+}
+@utility z-600 {
+  z-index: 600;
+}
+@utility z-610 {
+  z-index: 610;
+}
+@utility z-620 {
+  z-index: 620;
+}
+@utility z-630 {
+  z-index: 630;
+}
+@utility z-640 {
+  z-index: 640;
+}
+@utility z-650 {
+  z-index: 650;
+}
+@utility z-660 {
+  z-index: 660;
+}
+@utility z-670 {
+  z-index: 670;
+}
+@utility z-680 {
+  z-index: 680;
+}
+@utility z-690 {
+  z-index: 690;
+}
+@utility z-700 {
+  z-index: 700;
+}
+@utility z-710 {
+  z-index: 710;
+}
+@utility z-720 {
+  z-index: 720;
+}
+@utility z-730 {
+  z-index: 730;
+}
+@utility z-740 {
+  z-index: 740;
+}
+@utility z-750 {
+  z-index: 750;
+}
+@utility z-760 {
+  z-index: 760;
+}
+@utility z-770 {
+  z-index: 770;
+}
+@utility z-780 {
+  z-index: 780;
+}
+@utility z-790 {
+  z-index: 790;
+}
+@utility z-800 {
+  z-index: 800;
+}
+@utility z-810 {
+  z-index: 810;
+}
+@utility z-820 {
+  z-index: 820;
+}
+@utility z-830 {
+  z-index: 830;
+}
+@utility z-840 {
+  z-index: 840;
+}
+@utility z-850 {
+  z-index: 850;
+}
+@utility z-860 {
+  z-index: 860;
+}
+@utility z-870 {
+  z-index: 870;
+}
+@utility z-880 {
+  z-index: 880;
+}
+@utility z-890 {
+  z-index: 890;
+}
+@utility z-900 {
+  z-index: 900;
+}
+@utility z-910 {
+  z-index: 910;
+}
+@utility z-920 {
+  z-index: 920;
+}
+@utility z-930 {
+  z-index: 930;
+}
+@utility z-940 {
+  z-index: 940;
+}
+@utility z-950 {
+  z-index: 950;
+}
+@utility z-960 {
+  z-index: 960;
+}
+@utility z-970 {
+  z-index: 970;
+}
+@utility z-980 {
+  z-index: 980;
+}
+@utility z-990 {
+  z-index: 990;
+}
+@utility z-1000 {
+  z-index: 1000;
+}
+
+@utility border-1.7 {
+  border-width: 1.7px;
+}
+
+@utility border-1.9 {
+  border-width: 1.9px;
+}
+
+@utility border-3 {
+  border-width: 3px;
+}
+
+@utility border-5 {
+  border-width: 5px;
+}
+
+@utility border-6 {
+  border-width: 6px;
+}
+
+@utility border-7 {
+  border-width: 7px;
+}
+
+@utility border-8 {
+  border-width: 8px;
+}
+
+@utility border-9 {
+  border-width: 9px;
+}
+
+@utility border-10 {
+  border-width: 10px;
+}
+
+@utility border-r-1.9 {
+  border-right-width: 1.9px;
+}
+
+@utility border-l-1.9 {
+  border-left-width: 1.9px;
+}
+
+@utility transition-layer {
+  transition-property: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition-duration: 400ms;
+}
+
+@utility transition-border-color {
+  transition-property: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition-duration: 400ms;
+}
+
+@utility w-95% {
+  width: 95%;
+}
+@utility w-90% {
+  width: 90%;
+}

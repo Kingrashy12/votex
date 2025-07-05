@@ -22,6 +22,8 @@ export const delay = (ms: number) =>
 export const parseError = (err: any) => {
   const errorString = err.message as string;
 
+  console.log("Error String:", errorString);
+
   const match = errorString.match(/execution reverted: "(.*?)"/);
   if (match) {
     return match[1];
@@ -61,17 +63,16 @@ export const updateVoteObject = (response: any): Vote[] => {
   }));
 };
 
-export const calculateDateDifferencePercentage = (
+export const calculateProgressPercentage = (
   startDate: number,
   endDate: number
 ) => {
-  const currentDate = new Date();
-
+  const currentTime = Date.now();
   const totalDuration = endDate - startDate;
 
-  const timeLeft = currentDate.getTime() - startDate;
+  const timePassed = currentTime - startDate;
 
-  const parcentage = (timeLeft / totalDuration) * 100;
+  const percentage = (timePassed / totalDuration) * 100;
 
-  return Math.min(Math.max(parcentage, 0), 100);
+  return Math.min(Math.max(percentage, 0), 100);
 };

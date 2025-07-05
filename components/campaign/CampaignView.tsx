@@ -18,15 +18,17 @@ import NoResult from "../NoResult";
 
 const CampaignView = () => {
   const { id } = useParams();
-  const arg = useContractWithAddress(false);
-  const { isConnected } = useWallet();
+  const arg = useContractWithAddress();
+  const { signer, provider } = useWallet();
   const state = useVotexStore();
   const { dispatch } = useTopDispatch();
+
+  const isSignerOrProviderAvailable = !!(signer || provider);
 
   const isLoading = state.fetchStatus === "Pending";
 
   useEffect(() => {
-    if (isConnected) {
+    if (isSignerOrProviderAvailable) {
       if (state.currentCampaign?.id !== id) {
         dispatch({ ...arg, id: Number(id) }, fetchCampaign);
       } else if (
@@ -37,7 +39,7 @@ const CampaignView = () => {
         dispatch({ ...arg, id: Number(id) }, fetchCampaign);
       }
     }
-  }, [isConnected, state.currentCampaign?.totalVoters]);
+  }, [isSignerOrProviderAvailable, state.currentCampaign?.totalVoters]);
 
   return (
     <div className={tw("w-full h-full items-center justify-center flex")}>

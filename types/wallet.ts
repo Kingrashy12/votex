@@ -1,5 +1,5 @@
+import { Provider } from "ethers";
 import { Signer } from "ethers";
-import { BrowserProvider } from "ethers";
 
 export interface Chain {
   chainId: string;
@@ -7,11 +7,11 @@ export interface Chain {
 }
 
 export interface WalletContextType {
-  provider: BrowserProvider | null;
+  provider: Provider | null;
   signer: Signer | null;
   address: string;
   isConnected: boolean;
   chain: Chain;
   connectWallet: () => Promise<void>;
-  discountWallet: () => Promise<void>;
+  discountWallet: () => void;
 }

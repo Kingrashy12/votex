@@ -2,16 +2,15 @@ import { useWallet } from "@/providers/wallet";
 import { connectWithContract } from "@/utils/wallet";
 
 export const useContract = () => {
-  const { signer } = useWallet();
-  const contractCaller = async () => await connectWithContract(signer);
+  const { signer, provider } = useWallet();
+  const contractCaller = async () =>
+    await connectWithContract(signer ?? provider);
   return contractCaller;
 };
 
-export const useContractWithAddress = (
-  sendWithoutConnection: boolean = false
-) => {
+export const useContractWithAddress = () => {
   const { signer, address, provider } = useWallet();
   const contractCaller = async () =>
-    await connectWithContract(sendWithoutConnection ? provider : signer);
+    await connectWithContract(signer ?? provider);
   return { contractCaller, address };
 };

@@ -6,7 +6,7 @@ import votexAbi from "../data/votex.json";
 
 export const fetchContract = (signer: any) =>
   new ethers.Contract(
-    "0x7bc06c482DEAd17c0e297aFbC32f6e63d3846650",
+    "0xCd7e0aAe0576EcB304B0B85E5eEba40d003bc9cF",
     votexAbi,
     signer
   );

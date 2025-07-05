@@ -24,6 +24,7 @@ const Campaigns = () => {
       className={tw(
         "grid grid-cols-3 gap-8 max-[1024px]:grid-cols-2 max-[730px]:grid-cols-1 max-[730px]:w-full",
         status === "loaded" &&
+          !isLoading &&
           state.campaigns.length === 0 &&
           "w-full flex items-center justify-center h-[70vh]"
       )}

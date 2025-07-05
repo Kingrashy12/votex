@@ -1,6 +1,6 @@
 import { useWallet } from "@/providers/wallet";
 import { Campaign } from "@/types/app";
-import { calculateDateDifferencePercentage } from "@/utils/global";
+import { calculateProgressPercentage } from "@/utils/global";
 import { useGSAP } from "@gsap/react";
 import { Box, Button, formatDate, formatNumber, openModal } from "auera-ui";
 import gsap from "gsap";
@@ -16,7 +16,7 @@ interface ViewProps {
 const CampaignInfo: React.FC<ViewProps> = ({
   campaign: { name, id, totalVoters, active, startDate, endDate, voters },
 }) => {
-  const { address } = useWallet();
+  const { address, isConnected, connectWallet } = useWallet();
 
   useGSAP(() => {
     gsap.fromTo(
@@ -32,7 +32,7 @@ const CampaignInfo: React.FC<ViewProps> = ({
     );
   }, []);
 
-  const percentage = calculateDateDifferencePercentage(
+  const percentage = calculateProgressPercentage(
     Number(startDate),
     Number(endDate)
   );
@@ -121,9 +121,13 @@ const CampaignInfo: React.FC<ViewProps> = ({
           size="md"
           radius="full"
           disabled={hasUserVoted()}
-          onClick={() => openModal("vote-modal")}
+          onClick={isConnected ? () => openModal("vote") : connectWallet}
         >
-          Participate
+          {hasUserVoted()
+            ? "You have voted"
+            : isConnected
+            ? "Vote Now"
+            : "Connect Wallet"}
         </Button>
         <Box className="items-center gap-3">
           <RiTwitterFill size={22} color="white" />

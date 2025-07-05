@@ -3,7 +3,6 @@
 import { Chain, WalletContextType } from "@/types/wallet";
 import { closeModal } from "auera-ui";
 import { ethers, Signer } from "ethers";
-import { BrowserProvider } from "ethers";
 import {
   createContext,
   useCallback,
@@ -20,22 +19,27 @@ export const useWallet = () => {
   if (context === undefined) {
     throw new Error("useWallet must be used within WalletProvider");
   }
-
   return context;
 };
 
 export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
-  const [provider, setProvider] = useState<BrowserProvider | null>(null);
+  const [provider, setProvider] = useState<ethers.Provider | null>(null);
   const [signer, setSigner] = useState<Signer | null>(null);
   const [address, setAddress] = useState("");
   const [chain, setChain] = useState<Chain>({ chainId: "", name: "" });
   const [isConnected, setIsConnected] = useState(false);
 
-  // @ts-expect-error invalid type
+  // @ts-expect-error type mismatch
   const ETH_OBJ = typeof window !== "undefined" ? window.ethereum : undefined;
 
-  // TODO: For MetaMask based provider use window.ethereum.providers.find((provider) => provider.isMetaMask)
+  // JSON-RPC fallback provider (always available for reads)
+  const fallbackProvider = useMemo(() => {
+    return new ethers.JsonRpcProvider(
+      `https://sepolia.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_API_KEY}`
+    );
+  }, []);
 
+  // Listen to account + chain changes if MetaMask exists
   useEffect(() => {
     if (!ETH_OBJ) return;
 
@@ -48,13 +52,7 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     const handleChainChanged = async () => {
-      const newProvider = new ethers.BrowserProvider(ETH_OBJ);
-      const newSigner = await newProvider.getSigner();
-      const network = await newProvider.getNetwork();
-
-      setProvider(newProvider);
-      setSigner(newSigner);
-      setChain({ chainId: network.chainId.toString(), name: network.name });
+      await setupProviderAndSigner();
     };
 
     ETH_OBJ.on("accountsChanged", handleAccountsChange);
@@ -68,30 +66,36 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
 
   const checkIfWalletIsConnected = useCallback(async () => {
     try {
-      const accounts = await ETH_OBJ.request({ method: "eth_accounts" });
-      if (accounts.length > 0) {
+      const accounts = await ETH_OBJ?.request?.({ method: "eth_accounts" });
+      if (accounts && accounts.length > 0) {
         await setupProviderAndSigner();
         setAddress(accounts[0]);
         setIsConnected(true);
+      } else {
+        // fallback for read-only
+        setProvider(fallbackProvider);
+        setSigner(null);
+        setIsConnected(false);
       }
     } catch (error) {
       console.log("Check Error:", error);
     }
-  }, []);
+  }, [fallbackProvider]);
 
   useEffect(() => {
     checkIfWalletIsConnected();
-  }, []);
+  }, [checkIfWalletIsConnected]);
 
   const connectWallet = useCallback(async () => {
     try {
-      if (typeof ETH_OBJ === "undefined") {
+      if (!ETH_OBJ) {
         alert("Please install MetaMask!");
         return;
       }
 
       await ETH_OBJ.request({ method: "eth_requestAccounts" });
       await setupProviderAndSigner();
+
       const accounts = await ETH_OBJ.request({ method: "eth_accounts" });
       setAddress(accounts[0]);
       setIsConnected(true);
@@ -102,34 +106,26 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const setupProviderAndSigner = async () => {
-    const provider = new ethers.BrowserProvider(ETH_OBJ);
-    const signer = await provider.getSigner();
-    setProvider(provider);
-    setSigner(signer);
-    const { chainId, name } = await provider.getNetwork();
+    const metamaskProvider = new ethers.BrowserProvider(ETH_OBJ);
+    const metamaskSigner = await metamaskProvider.getSigner();
+    const { chainId, name } = await metamaskProvider.getNetwork();
+    setProvider(metamaskProvider);
+    setSigner(metamaskSigner);
     setChain({ chainId: String(chainId), name });
   };
 
   const internalDiscount = () => {
-    setProvider(null);
+    setProvider(fallbackProvider);
     setSigner(null);
     setAddress("");
     setIsConnected(false);
     setChain({ chainId: "", name: "" });
-    ETH_OBJ.removeAllListeners();
+    ETH_OBJ?.removeAllListeners();
   };
 
-  const discountWallet = useCallback(async () => {
-    try {
-      // window.location.reload();
-      // ETH_OBJ._handleDisconnect();
-      // localStorage.clear();
-      internalDiscount();
-    } catch (error) {
-      console.log("Failed to disconnect:", error);
-      internalDiscount();
-    }
-  }, []);
+  const discountWallet = useCallback(() => {
+    internalDiscount();
+  }, [fallbackProvider]);
 
   const contextValue = useMemo(
     () => ({

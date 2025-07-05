@@ -1,10 +1,6 @@
 import { Box, For, Skeleton } from "auera-ui";
 import React from "react";
 
-// const Header=()=>{
-//     return
-// }
-
 const LoadingCampaignView = () => {
   return (
     <Box className="gap-5 h-full max-[1024px]:flex-col w-full justify-center">

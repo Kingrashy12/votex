@@ -46,6 +46,14 @@ const CampaignInfo: React.FC<ViewProps> = ({
     return voters.some((add) => add.toLowerCase() === address.toLowerCase());
   };
 
+  const handleParticipate = () => {
+    if (isConnected) {
+      openModal("vote-modal");
+    } else {
+      connectWallet();
+    }
+  };
+
   return (
     <Box
       id="ctop"
@@ -121,7 +129,7 @@ const CampaignInfo: React.FC<ViewProps> = ({
           size="md"
           radius="full"
           disabled={hasUserVoted()}
-          onClick={isConnected ? () => openModal("vote") : connectWallet}
+          onClick={handleParticipate}
         >
           {hasUserVoted()
             ? "You have voted"

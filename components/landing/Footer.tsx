@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
 
         <div className="flex items-center gap-4 text-gray-600 dark:text-gray-400">
           <a
-            href="https://github.com/your-votex-repo"
+            href="https://github.com/Kingrashy12/votex"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-600 dark:hover:text-blue-400 transition"
@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
             <FiGithub size={20} />
           </a>
           <a
-            href="https://twitter.com/your-votex-handle"
+            href="https://x.com/Kingrashy12"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-600 dark:hover:text-blue-400 transition"
@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
             <FiTwitter size={20} />
           </a>
           <a
-            href="https://votex.vercel.app"
+            href="https://votex-five.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-600 dark:hover:text-blue-400 transition"

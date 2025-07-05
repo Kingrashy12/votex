@@ -7,13 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "ui": "npm i ../auera-ui/package/auera-ui-0.1.50.tgz",
-    "state": "npm i ../@zoltra-toolkit/packages/react/zoltra-toolkit-react-0.1.0-alpha.1.tgz"
+    "ui": "npm i ./auera-ui-0.1.51.tgz",
+    "state": "npm i ./zoltra-toolkit-react-0.1.0-alpha.1.tgz"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@zoltra-toolkit/react": "file:../@zoltra-toolkit/packages/react/zoltra-toolkit-react-0.1.0-alpha.1.tgz",
-    "auera-ui": "file:../auera-ui/package/auera-ui-0.1.50.tgz",
+    "@zoltra-toolkit/react": "file:zoltra-toolkit-react-0.1.0-alpha.1.tgz",
+    "auera-ui": "file:auera-ui-0.1.51.tgz",
     "date-fns": "^4.1.0",
     "ethers": "^6.13.5",
     "gsap": "^3.13.0",

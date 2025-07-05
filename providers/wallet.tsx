@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Chain, WalletContextType } from "@/types/wallet";
@@ -93,7 +94,48 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
         return;
       }
 
+      // request accounts
       await ETH_OBJ.request({ method: "eth_requestAccounts" });
+
+      // enforce Sepolia
+      try {
+        await ETH_OBJ.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: "0xaa36a7" }], // 11155111 in hex
+        });
+      } catch (switchError) {
+        // if Sepolia is not added, prompt to add
+        if ((switchError as any).code === 4902) {
+          try {
+            await ETH_OBJ.request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  chainId: "0xaa36a7",
+                  chainName: "Sepolia Testnet",
+                  nativeCurrency: {
+                    name: "SepoliaETH",
+                    symbol: "ETH",
+                    decimals: 18,
+                  },
+                  rpcUrls: [
+                    "https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID",
+                  ],
+                  blockExplorerUrls: ["https://sepolia.etherscan.io"],
+                },
+              ],
+            });
+          } catch (addError) {
+            console.error("Could not add Sepolia network", addError);
+            return;
+          }
+        } else {
+          console.error("User rejected network switch", switchError);
+          return;
+        }
+      }
+
+      // after switching, set up provider and signer
       await setupProviderAndSigner();
 
       const accounts = await ETH_OBJ.request({ method: "eth_accounts" });

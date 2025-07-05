@@ -54,6 +54,10 @@ const Hero = () => {
         size="xl"
         id="content"
         className="mt-3 opacity-0 translate-y-10"
+        as="a"
+        target="_blank"
+        rel="noreferrer"
+        href="https://sepolia.etherscan.io/address/0xcd7e0aae0576ecb304b0b85e5eeba40d003bc9cf"
         // rightIcon={FaArrowUpRightFromSquare}
       >
         Explore the Contract

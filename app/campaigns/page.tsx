@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const Page = () => {
   return (
-    <main className="w-full flex flex-col items-center justify-center h-full py-10 px-10 max-[600px]:px-4 max-[380px]:px-3">
+    <main className="w-full flex flex-col flex-1 items-center justify-center h-full py-10 px-10 max-[600px]:px-4 max-[380px]:px-3">
       <Campaigns />
     </main>
   );

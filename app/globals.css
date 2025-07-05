@@ -1,7 +1,7 @@
 @import "tailwindcss";
-@import "./config.css";
-@import "./custom-variant.css";
-@import "auera-ui/dist/auera.css";
+/* @import "./config.css";
+@import "./custom-variant.css"; */
+@import "auera-ui/auera.css";
 
 :root {
   --background: #171717;

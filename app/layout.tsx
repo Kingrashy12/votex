@@ -9,6 +9,7 @@ import { stylesRules } from "./style-rules";
 import AlertContainer from "@/components/Alert/AlertContainer";
 import Container from "@/components/overlays/container";
 import GlobalFetch from "@/providers/GlobalFetch";
+import Footer from "@/components/landing/Footer";
 
 export const inter = localFont({
   src: "../fonts/Inter-VariableFont_opsz,wght.ttf",
@@ -68,6 +69,7 @@ export default function RootLayout({
               <Navbar />
               {/* TODO: Create a Slot component to handle children and unconnected session */}
               {children}
+              <Footer />
             </GlobalFetch>
           </WalletProvider>
         </Provider>

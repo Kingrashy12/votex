@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import React, { useRef } from "react";
+import React from "react";
 import { FiCheckCircle, FiLock, FiZap } from "react-icons/fi";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -33,38 +31,10 @@ const features = [
 ];
 
 const Features: React.FC = () => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  useGSAP(
-    () => {
-      if (!cardRef.current) return;
-
-      const cards = gsap.utils.toArray(cardRef.current?.children);
-
-      cards.forEach((card) => {
-        gsap.to(card as any, {
-          y: -5 * (cards.indexOf(card) + 5),
-          scale: 1.1,
-          opacity: 1,
-          scrollTrigger: {
-            trigger: card as any,
-            start: "bottom bottom",
-            end: "top 20%",
-            scrub: true,
-          },
-          ease: "power1.inOut",
-        });
-      });
-    },
-    { scope: cardRef }
-  );
-
   return (
     <div className="py-16 px-4 md:px-8 lg:px-20 text-gray-100 transition-colors">
       <h2 className="text-3xl font-bold text-center mb-10">Why Use Votex?</h2>
-      <div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
-        ref={cardRef}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {features.map((feature, index) => (
           <div
             key={index}
